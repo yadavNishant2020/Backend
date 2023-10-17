@@ -47,7 +47,7 @@ const adj = [
   "abandoned",
   "able",
   "absolute",
-  "adorable",
+  "adorabl",
   "adventurous",
   "academic",
   "acceptable",
