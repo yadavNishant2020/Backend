@@ -5,40 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
     <%- include("partials/header.ejs") %>
-    <div>
-        <h1></h1>
+    <div class="form-container">
+        <form action="" method="post">
+            <ul>
+                <% if (locals.tasks && locals.tasks.length> 0) { %>
+                    <% for (let i=0; i < tasks.length; i++) { %>
+                        <li class="listItem">
+                            <input type="checkbox" name="myCheckbox" id="toggleSwitch<%= i %>"
+                                onclick="toggleItemStatus(<%= i %>)">
+                            <%= tasks[i] %>
+                        </li>
+                        <% } %>
+                            <% } %>
+            </ul>
+            
+            <input type="text" name="task" class="task-input" placeholder="New Task"></input>
+            <button type="submit" class="plus-btn">+</button>
+        </form>
     </div>
-    <form action="" method="post">
-        <ul>
-            <% if (tasks && tasks.length > 0) { %>
-                <% for (let i = 0; i < tasks.length; i++) { %>
-                    <li class="listItem">
-                        <input type="checkbox" name="myCheckbox" id="toggleSwitch<%= i %>" onclick="toggleItemStatus(<%= i %>)">
-                        <%= tasks[i] %>
-                    </li>
-                <% } %>
-            <% } %>
-        </ul>
-        <input type="text" name="task" id="">
-        <button type="submit">Add Task</button>
-    </form>
-    <%- include("partials/footer.ejs") %>
+        <%- include("partials/footer.ejs") %>
 
-    <script>
-        function toggleItemStatus(index) {
-            const checkbox = document.getElementById('toggleSwitch' + index);
-            const listItem = document.getElementsByClassName('listItem')[index];
+            <script>
+                function toggleItemStatus(index) {
+                    const checkbox = document.getElementById('toggleSwitch' + index);
+                    const listItem = document.getElementsByClassName('listItem')[index];
 
-            if (checkbox.checked) {
-                listItem.style.textDecoration = 'line-through';
-            } else {
-                listItem.style.textDecoration = 'none';
-            }
-        }
-    </script>
+                    if (checkbox.checked) {
+                        listItem.style.textDecoration = 'line-through';
+                    } else {
+                        listItem.style.textDecoration = 'none';
+                    }
+                }
+            </script>
 </body>
+
 </html>
