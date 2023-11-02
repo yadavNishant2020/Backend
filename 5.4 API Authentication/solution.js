@@ -3,13 +3,13 @@ import axios from "axios";
 
 const app = express();
 const port = 3000;
-const API_URL = "https://secrets-api.appbrewery.com";
+const API_URL = "http://localhost:4000";
 
 // TODO: Replace the values below with your own before running this file.
-const yourUsername = "ydv";
+const yourUsername = "nish";
 const yourPassword = 1234;
-const yourAPIKey = "https://secrets-api.appbrewery.com/generate-api-key";
-const yourBearerToken = "0fe01302-51b3-4c3c-a5d8-9857db711616";
+const yourAPIKey = "c9cfe159-5a72-4a4c-b50f-f40695cfb6c0";
+const yourBearerToken = "69b07dde-7d0c-4617-9866-ed74ba04adcb";
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { content: "API Response." });
