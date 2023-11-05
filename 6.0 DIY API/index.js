@@ -75,12 +75,30 @@ app.patch("/jokes/:id", (req, res) => {
 
 //7. DELETE Specific joke
 app.delete("/jokes/:id",(req,res)=>{
-  const ID = parseInt(req.param.id);
-  console.log(ID);
-  const jokeDelete= jokes.filter((joke)=>joke.id !== joke.ID);
-  console.log(`${jokeDelete} is Deleted.`);
+  const Id = parseInt(req.params.id);
+  console.log(Id);
+  const searchIndex = jokes.findIndex((joke)=>joke.id===Id);
+  if(searchIndex>-1){
+    jokes.splice(searchIndex, 1);
+    res.sendStatus(200);
+  }
+  else{
+    res.status(404).send("No such Joke found");
+  }
 })
 //8. DELETE All jokes
+app.delete("/all",(req,res)=>{
+   const Key = req.query.key;
+   console.log(Key);
+   if(Key === masterKey){
+    jokes.length=0;
+    console.log(jokes);
+    res.send({message:"All Jokes Deleted"});
+   }
+   else{
+    res.send({error:"Invalid key"});
+   }
+})
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
