@@ -20,11 +20,9 @@ app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   try {
-    const result = await db.query("SELECT country_code from visited_countries");
+    const result = await db.query("SELECT country_code FROM visited_countries");
 
-    const countryData = result.rows.map((element) => {
-      return element.country_code;
-    });
+    const countryData = result.rows.map((element) => element.country_code);
     console.log(countryData);
 
     const total = result.rows.length;
@@ -51,7 +49,7 @@ app.post("/add", async (req, res) => {
 
     await db.query("INSERT INTO visited_countries (country_code) VALUES ($1)", [countryCode]);
 
-    const result = await db.query("SELECT country_code from visited_countries");
+    const result = await db.query("SELECT country_code FROM visited_countries");
     const countryData = result.rows.map((element) => element.country_code);
 
     const total = result.rows.length;
@@ -63,8 +61,6 @@ app.post("/add", async (req, res) => {
   }
 });
 
-
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-
